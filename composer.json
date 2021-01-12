@@ -1,0 +1,14 @@
+{
+    "name": "amirgonvt/press",
+    "description": "An elegant markdown-powered blog for the Laravel framework.",
+    "license": "AmirDP",
+    "authors": [
+        {
+            "name": "Amir Khodabande",
+            "email": "amirdp8102@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^6.7"
+    }
+}
