@@ -10,5 +10,18 @@
     ],
     "require-dev": {
         "orchestra/testbench": "^6.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "amirgonvt\\Press\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "amirgonvt\\Press\\Tests\\" : "tests/"
+        }
+    },
+    "require": {
+        "erusev/parsedown": "^1.7"
     }
 }
