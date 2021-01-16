@@ -3,7 +3,6 @@
 
 namespace amirgonvt\Press;
 
-
 use Illuminate\Support\ServiceProvider;
 
 class PressBaseServiceProvider extends ServiceProvider
@@ -15,7 +14,9 @@ class PressBaseServiceProvider extends ServiceProvider
 
     public function register()
     {
-        
+        $this->commands([
+            Console\ProcessCommand::class,
+        ]);
     }
 
     private function registerResources()
