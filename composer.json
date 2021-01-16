@@ -8,6 +8,10 @@
             "email": "amirdp8102@gmail.com"
         }
     ],
+    "require": {
+        "erusev/parsedown": "^1.7",
+        "laravel/legacy-factories": "^1.0"
+    },
     "require-dev": {
         "orchestra/testbench": "^6.7",
         "mockery/mockery": "^1.4"
@@ -22,8 +26,11 @@
             "amirgonvt\\Press\\Tests\\" : "tests/"
         }
     },
-    "require": {
-        "erusev/parsedown": "^1.7",
-        "laravel/legacy-factories": "^1.0"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "amirgonvt\\Press\\PressBaseServiceProvider"
+            ]
+        }
     }
 }
