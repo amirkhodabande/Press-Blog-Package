@@ -1,11 +1,9 @@
 <?php
 
 
-namespace amirgonvt\Press\Tests\Feature;
-
+namespace amirgonvt\Press\Tests;
 
 use amirgonvt\Press\MarkdownParser;
-use Orchestra\Testbench\TestCase;
 
 class MarkdownTest extends TestCase
 {
