@@ -1,12 +1,10 @@
 <?php
 
 
-namespace amirgonvt\Press\Tests\Feature;
-
+namespace amirgonvt\Press\Tests;
 
 use amirgonvt\Press\PressFileParser;
 use Carbon\Carbon;
-use Orchestra\Testbench\TestCase;
 
 class PressFileParserTest extends TestCase
 {
