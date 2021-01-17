@@ -4,29 +4,35 @@
 namespace amirgonvt\Press\Drivers;
 
 
-use amirgonvt\Press\PressFileParser;
+use amirgonvt\Press\Exceptions\FileDriverDirectoryNotFoundException;
 use Illuminate\Support\Facades\File;
 
-class FileDriver
+class FileDriver extends Driver
 {
     public function fetchPosts()
     {
-        $files = File::files(config('press.path'));
+        $files = File::files($this->config['path']);
 
         foreach ($files as $key => $file) {
-            $posts[] = (new PressFileParser($file->getPathname()))->getData();
-            /*
-             * I dont know why : the post contain extra field with duplicate values from title and description.
-             *
-             * so I decide to remove theme manually from here, if you know a better way please tell me :) */
-            $extra = json_decode($posts[$key]['extra']);
+            $this->parse($file->getPathname(), $file->getFilename());
+
+            $extra = json_decode($this->posts[$key]['extra']);
             unset($extra->title);
             unset($extra->description);
 
             $extra = json_encode($extra);
-            $posts[$key]['extra'] = $extra;
+            $this->posts[$key]['extra'] = $extra;
         }
 
-        return $posts ?? [];
+        return $this->posts;
+    }
+
+    protected function validateSource()
+    {
+        if (! File::exists($this->config['path'])) {
+            throw new FileDriverDirectoryNotFoundException(
+                'Directory at \'' . $this->config['path'] . '\' does not exist. Check the directory path in the config file.'
+            );
+        }
     }
 }
