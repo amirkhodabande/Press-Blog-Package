@@ -6,7 +6,7 @@ namespace amirgonvt\Press;
 
 class Press
 {
-    public static function configNotPublished(): bool
+    public function configNotPublished(): bool
     {
         return is_null(config('press'));
     }
@@ -16,7 +16,7 @@ class Press
      * 
      * @return mixed
      */
-    public static function driver()
+    public function driver()
     {
         $driver = ucfirst(config('press.driver'));
         $class = "amirgonvt\\Press\\Drivers\\" . $driver . "Driver";
@@ -24,7 +24,7 @@ class Press
         return new $class;
     }
 
-    public static function path()
+    public function path()
     {
         return config('press.path', 'blogs');
     }
