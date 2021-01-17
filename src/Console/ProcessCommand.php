@@ -4,11 +4,9 @@
 namespace amirgonvt\Press\Console;
 
 
+use amirgonvt\Press\Facades\Press;
 use amirgonvt\Press\Post;
-use amirgonvt\Press\Press;
-use amirgonvt\Press\PressFileParser;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
 use \Illuminate\Support\Str;
 
 class ProcessCommand extends Command
