@@ -18,7 +18,7 @@ class FileDriver extends Driver
 
             $extra = json_decode($this->posts[$key]['extra']);
             unset($extra->title);
-            unset($extra->description);
+//            unset($extra->description);
 
             $extra = json_encode($extra);
             $this->posts[$key]['extra'] = $extra;
