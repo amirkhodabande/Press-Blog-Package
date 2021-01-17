@@ -24,16 +24,20 @@ class ProcessCommand extends Command
                 "\'php artisan vendor:publish --tag=press-config\'");
         }
 
-       $posts = Press::driver()->fetchPosts();
+        try {
+            $posts = Press::driver()->fetchPosts();
 
-       foreach ($posts as $post) {
-           Post::create([
-               'identifier' => Str::random(),
-               'slug' => Str::slug($post['title']),
-               'title' => $post['title'],
-               'body' => $post['body'],
-               'extra' => $post['extra'],
-           ]);
-       }
+            foreach ($posts as $post) {
+                Post::create([
+                    'identifier' => $post['identifier'],
+                    'slug' => Str::slug($post['title']),
+                    'title' => $post['title'],
+                    'body' => $post['body'],
+                    'extra' => $post['extra'],
+                ]);
+            }
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
     }
 }
