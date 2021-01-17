@@ -5,6 +5,7 @@ namespace amirgonvt\Press;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use amirgonvt\Press\Facades\Press;
 
 class PressBaseServiceProvider extends ServiceProvider
 {
@@ -23,12 +24,15 @@ class PressBaseServiceProvider extends ServiceProvider
         ], 'press-config');
     }
 
+    /**
+     * Register all of the package resources here
+     */
     private function registerResources()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'press');
 
+        $this->registerFacades();
         $this->registerRoutes();
     }
 
@@ -57,5 +61,12 @@ class PressBaseServiceProvider extends ServiceProvider
         $this->commands([
             Console\ProcessCommand::class,
         ]);
+    }
+
+    protected function registerFacades()
+    {
+        $this->app->singleton('Press', function ($app) {
+            return new \amirgonvt\Press\Press();
+        });
     }
 }
