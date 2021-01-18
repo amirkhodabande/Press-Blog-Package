@@ -34,6 +34,7 @@ class PressBaseServiceProvider extends ServiceProvider
 
         $this->registerFacades();
         $this->registerRoutes();
+        $this->registerFields();
     }
 
     protected function registerRoutes()
@@ -68,5 +69,14 @@ class PressBaseServiceProvider extends ServiceProvider
         $this->app->singleton('Press', function ($app) {
             return new \amirgonvt\Press\Press();
         });
+    }
+
+    private function registerFields()
+    {
+        Press::fields([
+            Fields\Body::class,
+            Fields\Date::class,
+            Fields\Extra::class,
+        ]);
     }
 }
