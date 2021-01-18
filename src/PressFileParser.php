@@ -6,6 +6,7 @@ namespace amirgonvt\Press;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
+use ReflectionClass;
 
 class PressFileParser
 {
@@ -56,7 +57,7 @@ class PressFileParser
     {
         foreach ($this->data as $field => $value) {
 
-            $class = 'amirgonvt\\Press\\Fields\\' . ucfirst($field);
+            $class = $this->getField(title_case($field));
 
             if (!class_exists($class) && !method_exists($class, 'process')) {
                 $class = 'amirgonvt\\Press\\Fields\\Extra';
@@ -64,6 +65,17 @@ class PressFileParser
 
             $this->data = array_merge($this->data, $class::process($field, $value, $this->data));
 
+        }
+    }
+
+    private function getField($field)
+    {
+        foreach (\amirgonvt\Press\Facades\Press::availableFields() as $availableField) {
+            $class = new ReflectionClass($availableField);
+
+            if($class->getShortName() == $field) {
+                return $class->getName();
+            }
         }
     }
 
