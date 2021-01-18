@@ -15,13 +15,6 @@ class FileDriver extends Driver
 
         foreach ($files as $key => $file) {
             $this->parse($file->getPathname(), $file->getFilename());
-
-            $extra = json_decode($this->posts[$key]['extra']);
-            unset($extra->title);
-//            unset($extra->description);
-
-            $extra = json_encode($extra);
-            $this->posts[$key]['extra'] = $extra;
         }
 
         return $this->posts;
