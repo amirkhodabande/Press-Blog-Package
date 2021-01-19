@@ -1,0 +1,34 @@
+<?php
+
+
+namespace App\Providers;
+
+
+use amirgonvt\Press\Facades\Press;
+use Illuminate\Support\ServiceProvider;
+
+class PressServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        Press::fields($this->registerFields());
+    }
+
+    /**
+     * Register your custom fields
+     *
+     * @return array
+     */
+    protected function registerFields(): array
+    {
+        return [
+//
+        ];
+    }
+
+    public function register()
+    {
+//
+    }
+
+}
